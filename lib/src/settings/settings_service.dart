@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 class SettingsService {
   /// Loads the User's preferred ThemeMode from local or remote storage.
   Future<ThemeMode> themeMode() async => ThemeMode.system;
+  Future<Locale> applocale() async => const Locale('ru', '');
 
   /// Persists the user's preferred ThemeMode to local or remote storage.
   Future<void> updateThemeMode(ThemeMode theme) async {

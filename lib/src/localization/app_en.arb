@@ -1,4 +1,15 @@
 {
+  "system_theme": "System Theme",
+  "light_theme": "Light Theme", 
+  "dark_theme": "Dark Theme",
+  "settings": "Settings",
+  "themetitle": "Theme Application",
+  "langtitle": "Language Application",
+  "mycodes": "My codes",
+  "allcodes": "All codes",   
+  "favorites": "Favorites", 
+  "car": "Car", 
+  "add": "Add", 
   "appTitle": "skeleton",
   "@appTitle": {
     "description": "The title of the application"

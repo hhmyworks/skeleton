@@ -1,0 +1,17 @@
+{
+  "system_theme": "Тема по умолчанию",
+  "light_theme": "Светлая тема", 
+  "dark_theme": "Темная тема",
+  "settings": "Настройки",
+  "themetitle": "Тема оформления",
+  "langtitle": "Язык приложения",
+  "mycodes": "Мои коды",
+  "allcodes": "Все коды",   
+  "favorites": "Избранное", 
+  "car": "Машина", 
+  "add": "Добавить",    
+  "appTitle": "Скелет", 
+  "@appTitle": {
+    "description": "Название приложения"
+  }
+}
