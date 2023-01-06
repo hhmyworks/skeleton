@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../settings/settings_view.dart';
 import 'sample_item.dart';
@@ -48,9 +48,12 @@ class _SampleItemListViewState extends State<SampleItemListView> {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          AppLocalizations.of(context).mycodes,
-          style: Theme.of(context).textTheme.headline1,
+        title: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 21.w),
+          child: Text(
+            AppLocalizations.of(context).mycodes,
+            style: Theme.of(context).textTheme.headline1,
+          ),
         ),
         actions: const [
           NotificationActionBtn(),
@@ -60,32 +63,35 @@ class _SampleItemListViewState extends State<SampleItemListView> {
         children: [
           //top chips list
           Expanded(
-            flex: 1,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: titlechips.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: ChoiceChip(
-                    padding: const EdgeInsets.all(8),
-                    selected: _selectIndex == index,
-                    onSelected: (bool select) {
-                      setState(() {
-                        _selectIndex = index;
-                      });
-                    },
-                    backgroundColor: const Color.fromRGBO(255, 254, 252, 1),
-                    shadowColor: const Color.fromRGBO(235, 235, 235, 1),
-                    selectedColor: const Color.fromRGBO(33, 31, 31, 1),
-                    label: Text(titlechips[index]),
-                    labelStyle: TextStyle(
-                      color:
-                          _selectIndex == index ? Colors.white : Colors.black,
+            flex: 2,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 21.w),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: titlechips.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: EdgeInsets.all(4.w),
+                    child: ChoiceChip(
+                      //padding: EdgeInsets.all(8.w),
+                      selected: _selectIndex == index,
+                      onSelected: (bool select) {
+                        setState(() {
+                          _selectIndex = index;
+                        });
+                      },
+                      backgroundColor: const Color.fromRGBO(255, 254, 252, 1),
+                      selectedColor: const Color.fromRGBO(33, 31, 31, 1),
+                      label: Text(titlechips[index]),
+                      labelStyle: TextStyle(
+                        color:
+                            _selectIndex == index ? Colors.white : Colors.black,
+                      ),
+                      elevation: 2,
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
           //main list items
@@ -111,7 +117,7 @@ class MainListItems extends StatelessWidget {
     return Expanded(
       flex: 5,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 21),
+        padding: EdgeInsets.symmetric(horizontal: 21.w),
         child: ListView.builder(
           // Providing a restorationId allows the ListView to restore the
           // scroll position when a user leaves and returns to the app after it
@@ -122,14 +128,14 @@ class MainListItems extends StatelessWidget {
             final item = items[index];
 
             return Container(
-              margin: const EdgeInsets.symmetric(vertical: 7),
+              margin: EdgeInsets.symmetric(vertical: 7.h),
               child: InkWell(
                   customBorder: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 18, vertical: 14),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 18.w, vertical: 24.h),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: item.color.withAlpha(51),
@@ -139,16 +145,18 @@ class MainListItems extends StatelessWidget {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(10.r),
                               color: item.color,
                             ),
-                            padding: const EdgeInsets.all(10),
-                            child: const Icon(
-                              Icons.qr_code,
-                              size: 18,
+                            child: const Padding(
+                              padding: EdgeInsets.all(12.0),
+                              child: Image(
+                                image: AssetImage('assets/images/vector.png'),
+                                color: Color.fromRGBO(33, 31, 31, 1),
+                              ),
                             ),
                           ),
-                          const SizedBox(width: 21),
+                          SizedBox(width: 21.w),
                           Text(
                             item.title,
                             style: Theme.of(context).textTheme.headline3,
@@ -183,13 +191,13 @@ class NotificationActionBtn extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
-          height: 46,
-          width: 46,
+          height: 90,
+          width: 90,
           margin: const EdgeInsets.all(4),
           child: IconButton(
             splashRadius: 30,
             icon: const Icon(
-              size: 30,
+              size: 48,
               Icons.notifications,
               color: Color.fromRGBO(0, 0, 0, 1),
             ),
@@ -199,13 +207,13 @@ class NotificationActionBtn extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 18,
-          right: 14,
+          top: 20,
+          right: 34,
           child: Container(
-            constraints: const BoxConstraints(minHeight: 8, minWidth: 8),
+            constraints: const BoxConstraints(minHeight: 10, minWidth: 10),
             decoration: BoxDecoration(
               color: const Color.fromRGBO(255, 0, 46, 1),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(10.r),
             ),
           ),
         ),
@@ -222,78 +230,84 @@ class ButtomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Color.fromRGBO(33, 31, 31, 1),
+      decoration: BoxDecoration(
+        color: const Color.fromRGBO(33, 31, 31, 1),
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
+          topLeft: Radius.circular(20.r),
+          topRight: Radius.circular(20.r),
         ),
       ),
-      height: 100,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      height: 100.h,
+      child: Column(
         children: [
           SizedBox(
-            height: 20,
-            width: 20,
-            child: IconButton(
-              padding: const EdgeInsets.all(0),
-              onPressed: () {
-                Navigator.restorablePushNamed(context, SettingsView.routeName);
-              },
-              icon: const Icon(
-                Icons.settings,
-                size: 20,
-                color: Color.fromRGBO(255, 254, 252, 1),
-              ),
-            ),
+            height: 18.h,
           ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              color: const Color.fromRGBO(205, 193, 255, 1),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: const EdgeInsets.all(11),
-                  child: const Icon(
-                    Icons.qr_code,
-                    size: 20,
-                    color: Color.fromRGBO(33, 31, 31, 1),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 16, 17, 16),
-                  child: Text(
-                    AppLocalizations.of(context).mycodes,
-                    style: GoogleFonts.roboto(
-                        fontSize: 14,
-                        height: 1.15,
-                        fontWeight: FontWeight.w500,
-                        color: const Color(0xFF211F1F)),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              SizedBox(
+                height: 40.h,
+                width: 40.w,
+                child: IconButton(
+                  padding: const EdgeInsets.all(0),
+                  onPressed: () {
+                    Navigator.restorablePushNamed(
+                        context, SettingsView.routeName);
+                  },
+                  icon: Icon(
+                    Icons.settings,
+                    size: 40.h,
+                    color: const Color.fromRGBO(255, 254, 252, 1),
                   ),
                 ),
-              ],
-            ),
+              ),
+              Container(
+                height: 48.h,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: const Color.fromRGBO(205, 193, 255, 1),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    //padding: EdgeInsets.all(11.w),
+                    const Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Image(
+                        image: AssetImage('assets/images/vector.png'),
+                        color: Color.fromRGBO(33, 31, 31, 1),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0.w, 16.h, 17.w, 16.h),
+                      child: Text(
+                        AppLocalizations.of(context).mycodes,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 40.h,
+                width: 40.w,
+                child: IconButton(
+                  padding: const EdgeInsets.all(0.0),
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.person,
+                    size: 40.h,
+                    color: const Color.fromRGBO(255, 254, 252, 1),
+                  ),
+                ),
+              ),
+            ],
           ),
           SizedBox(
-            height: 20,
-            width: 20,
-            child: IconButton(
-              padding: const EdgeInsets.all(0.0),
-              onPressed: () {},
-              icon: const Icon(
-                Icons.person,
-                size: 20,
-                color: Color.fromRGBO(255, 254, 252, 1),
-              ),
-            ),
+            height: 14.h,
           ),
         ],
       ),
